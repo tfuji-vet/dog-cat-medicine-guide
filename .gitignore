@@ -1,0 +1,26 @@
+# 依存関係（ここが無いと push/PR が極端に遅くなる）
+node_modules/
+
+# ビルド成果物
+dist/
+build/
+*.local
+
+# ログ・キャッシュ
+*.log
+.npm
+.cache
+
+# 環境・秘密
+.env
+.env.*
+!.env.example
+
+# エディタ
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# 既存ルール
+data/*.csv
