@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SearchBar } from './components/SearchBar';
 import { MedicineCard } from './components/MedicineCard';
 import { MedicineDetail } from './components/MedicineDetail';
@@ -13,6 +13,36 @@ export default function App() {
   const [weight, setWeight] = useState('');
   const [animalType, setAnimalType] = useState<'犬' | '猫'>('犬');
   const [selectedCategory, setSelectedCategory] = useState('すべて');
+  const [isCompactHeader, setIsCompactHeader] = useState(false);
+
+  useEffect(() => {
+    let timeoutId: number | null = null;
+
+    const updateCompactState = () => {
+      const y = window.scrollY;
+      // ほぼ最上部（20px 未満）まで戻ったらだけヘッダーを広げる
+      setIsCompactHeader(y > 20);
+    };
+
+    const handleScroll = () => {
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId);
+      }
+      // スクロールが止まってから 400ms 後に状態を判定する（ゆっくり切り替え）
+      timeoutId = window.setTimeout(updateCompactState, 400);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // 初期状態も現在のスクロール位置から判定
+    updateCompactState();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId);
+      }
+    };
+  }, []);
 
   const filteredMedicines = medicineData.filter((medicine) => {
     // カテゴリフィルター
@@ -50,8 +80,10 @@ export default function App() {
   return (
     <div className="min-h-screen bg-emerald-50">
       <header className="bg-gradient-to-r from-emerald-800 to-emerald-900 shadow-lg sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <h1 className="text-2xl font-bold text-emerald-50 mb-4">🐾 犬猫治療薬ガイド</h1>
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 ${isCompactHeader ? 'py-2' : 'py-4'}`}>
+          <h1 className={`text-2xl font-bold text-emerald-50 transition-all duration-300 ${isCompactHeader ? 'mb-2 text-lg' : 'mb-4'}`}>
+            🐾 犬猫治療薬ガイド
+          </h1>
           <SearchBar
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
@@ -61,6 +93,7 @@ export default function App() {
             setWeight={setWeight}
             animalType={animalType}
             setAnimalType={setAnimalType}
+            compact={isCompactHeader}
           />
         </div>
       </header>
