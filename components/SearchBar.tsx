@@ -130,12 +130,12 @@ export function SearchBar({
             )}
             <input
               type="number"
-              placeholder="例: 5.5"
+              placeholder="体重(kg)を入力"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
               min="0"
               step="0.1"
-              className="w-full px-4 py-2 bg-white border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+              className="w-24 sm:w-28 md:w-32 px-3 py-2 bg-white border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
             />
           </div>
         </div>

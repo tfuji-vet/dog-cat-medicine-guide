@@ -1,0 +1,33 @@
+{
+  "ステロイド": {
+    "borderColor": "#A7F3D0",
+    "chipBg": "#ECFDF5",
+    "chipText": "#065F46"
+  },
+  "抗生物質": {
+    "borderColor": "#BFDBFE",
+    "chipBg": "#EFF6FF",
+    "chipText": "#1E3A8A"
+  },
+  "利尿薬": {
+    "borderColor": "#BAE6FD",
+    "chipBg": "#E0F2FE",
+    "chipText": "#075985"
+  },
+  "免疫抑制薬": {
+    "borderColor": "#E9D5FF",
+    "chipBg": "#F5F3FF",
+    "chipText": "#5B21B6"
+  },
+  "胃薬": {
+    "borderColor": "#FED7AA",
+    "chipBg": "#FFF7ED",
+    "chipText": "#9A3412"
+  },
+  "鎮痛薬": {
+    "borderColor": "#FECACA",
+    "chipBg": "#FEF2F2",
+    "chipText": "#991B1B"
+  }
+}
+
