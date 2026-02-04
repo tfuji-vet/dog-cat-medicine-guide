@@ -18,5 +18,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["*.ts", "*.tsx", "components", "data", "types"]
+  "include": ["*.ts", "*.tsx", "*.d.ts", "components", "data", "types", "utils"]
 }
